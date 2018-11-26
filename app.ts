@@ -10,14 +10,14 @@ import { commandsMiddleware } from './commands';
 const app = express();
 
 // Setup Express Server
-app.listen(process.env.port || process.env.PORT || 3978, '::', () => {
+app.listen(3978, '::', () => {
     console.log('Server Up');
 });
 // Create chat bot
 const connector = new builder.ChatConnector({
     appId: "c81a71e1-f22a-4774-98e4-6cd4ea4bee5c",
     appPassword: "uKMBL14#)rlbareVDQ859;^"
-    
+
 });
 
 const bot = new builder.UniversalBot(connector, [
