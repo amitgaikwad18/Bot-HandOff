@@ -15,8 +15,8 @@ app.listen(process.env.port || process.env.PORT || 3978, '::', () => {
 });
 // Create chat bot
 const connector = new builder.ChatConnector({
-    appId: process.env.MICROSOFT_APP_ID,
-    appPassword: process.env.MICROSOFT_APP_PASSWORD
+    appId: "c81a71e1-f22a-4774-98e4-6cd4ea4bee5c",
+    appPassword: "uKMBL14#)rlbareVDQ859;^"
 });
 
 const bot = new builder.UniversalBot(connector, [
@@ -31,7 +31,7 @@ app.post('/api/messages', connector.listen());
 app.use('/webchat', express.static('public'));
 
 // replace this function with custom login/verification for agents
-const isAgent = (session: builder.Session) => 
+const isAgent = (session: builder.Session) =>
     session.message.user.name.startsWith("Agent");
 
 const handoff = new Handoff(bot, isAgent);
@@ -44,4 +44,3 @@ bot.use(
     handoff.routingMiddleware(),
     /* other bot middlware should probably go here */
 );
-
