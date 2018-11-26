@@ -4,6 +4,9 @@
   "license": "MIT",
   "description": "Create example to escalate to a human",
   "main": "app.js",
+  "engines": {
+    "node": "8.11.0"
+  },
   "scripts": {
     "postinstall": "tsc",
     "build": "tsc",
