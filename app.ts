@@ -54,20 +54,20 @@ bot.dialog('/',
         session.send('You decided to talk to ' + session.message.text);
 
         if(session.message.text.match('Talk to Agent')){
-
+            
         }   
 
 });
 
-const isAgent = (session: builder.Session) => true;
+// const isAgent = (session: builder.Session) => true;
 
-const handoff = new Handoff(bot, isAgent);
+// const handoff = new Handoff(bot, isAgent);
 
-bot.use(
-    commandsMiddleware(handoff),
-    handoff.routingMiddleware(),
-      /* other bot middlware should probably go here */
-);
+// bot.use(
+//     commandsMiddleware(handoff),
+//     handoff.routingMiddleware(),
+//       /* other bot middlware should probably go here */
+// );
 
 // Create endpoint for agent / call center
 //app.use('/webchat', express.static('public'));
