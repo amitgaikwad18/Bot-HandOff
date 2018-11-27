@@ -21,11 +21,13 @@ const connector = new builder.ChatConnector({
 
 var inMemoryStorage = new builder.MemoryBotStorage();
 
-const bot = new builder.UniversalBot(connector, [
-    function (session, args, next) {
-        session.send('Echo ' + session.message.text);
-    }
-]).set('storage',inMemoryStorage);
+// const bot = new builder.UniversalBot(connector, [
+//     function (session, args, next) {
+//         session.send('Echo ' + session.message.text);
+//     }
+// ]).set('storage',inMemoryStorage);
+
+const bot = new builder.UniversalBot(connector).set('storage',inMemoryStorage);
 
 app.post('/api/messages', connector.listen());
 
@@ -51,6 +53,7 @@ bot.dialog('/',
 
         if(results.response){
             session.dialogData.userDecision = results.response;
+            session.send('You chose to speak with '+ session.dialogData.userDecision);
             console.log(session.dialogData.userDecision);
         }
 
