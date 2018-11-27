@@ -46,19 +46,19 @@ bot.dialog('/welcome',
 });
 
 // Create endpoint for agent / call center
-app.use('/webchat', express.static('public'));
+//app.use('/webchat', express.static('public'));
 
 // replace this function with custom login/verification for agents
-const isAgent = (session: builder.Session) =>
-    session.message.user.name.startsWith("Agent");
+//const isAgent = (session: builder.Session) =>
+ //   session.message.user.name.startsWith("Agent");
 
-const handoff = new Handoff(bot, isAgent);
+//const handoff = new Handoff(bot, isAgent);
 
 //========================================================
 // Bot Middleware
 //========================================================
-bot.use(
-    commandsMiddleware(handoff),
-    handoff.routingMiddleware(),
+//bot.use(
+ //   commandsMiddleware(handoff),
+  //  handoff.routingMiddleware(),
     /* other bot middlware should probably go here */
-);
+//);
