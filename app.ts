@@ -29,6 +29,22 @@ const bot = new builder.UniversalBot(connector, [
 
 app.post('/api/messages', connector.listen());
 
+
+bot.on('conversationUpdate', function (message) {
+    if (message.membersAdded) {
+        message.membersAdded.forEach(function (identity) {
+            if (identity.id === message.address.bot.id) {
+                bot.beginDialog(message.address, '/welcome');
+            }
+        });
+    }
+});
+
+bot.dialog('/welcome',
+    function(session){
+        session.send('Hi! You either talk to me or to agent');
+});
+
 // Create endpoint for agent / call center
 app.use('/webchat', express.static('public'));
 
