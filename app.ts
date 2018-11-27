@@ -45,6 +45,17 @@ bot.dialog('/welcome',
         session.send('Hi! You either talk to me or to agent');
 });
 
+bot.dialog('/', 
+
+    function(session, results){
+
+        if(results.response){
+            session.dialogData.userDecision = results.response;
+            console.log(session.dialogData.userDecision);
+        }
+
+});
+
 // Create endpoint for agent / call center
 //app.use('/webchat', express.static('public'));
 
