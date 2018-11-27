@@ -19,11 +19,13 @@ const connector = new builder.ChatConnector({
     appPassword: 'uKMBL14#)rlbareVDQ859;^'
 });
 
+var inMemoryStorage = new builder.MemoryBotStorage();
+
 const bot = new builder.UniversalBot(connector, [
     function (session, args, next) {
         session.send('Echo ' + session.message.text);
     }
-]);
+]).set('storage',inMemoryStorage);
 
 app.post('/api/messages', connector.listen());
 
