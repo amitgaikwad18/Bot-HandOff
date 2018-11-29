@@ -85,7 +85,7 @@ intents.matches('TransferChat',
 
                 let usr: builder.IIdentity = {
                     id: "session.message.user",
-                    name: "amit.gaikwad@gmail.com"
+                    name: "amitgaikwad85@gmail.com"
                 }
 
                 let bot: builder.IIdentity = {
