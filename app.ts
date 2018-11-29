@@ -90,7 +90,7 @@ intents.matches('TransferChat',
 
                 let bot: builder.IIdentity = {
                     id: "session.message.bot",
-                    name: ""
+                    name: "bot-handoff-skype"
                 }
 
                 let connectorAddress:  IChatConnectorAddress = {
