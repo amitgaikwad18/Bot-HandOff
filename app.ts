@@ -101,13 +101,13 @@ intents.matches('TransferChat',
 
             }
 
-            var msg = (new builder.Message());
+            var msg = (new Message());
 
             msg.address(connectorAddress).text('Hi!').toMessage;
 
             connector.send(msg[0], (err) => {
-                console.log('ERROR >>> '+ err.message);
-                console.log(err.stack);
+                //console.log('ERROR >>> '+ err.message);
+                console.error(err.stack);
             });
 
             // connector.startConversation(connectorAddress, (err, address) => {
