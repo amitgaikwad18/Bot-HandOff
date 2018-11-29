@@ -97,6 +97,7 @@ intents.matches('TransferChat',
                     "channelId": 'skype',
                     "user": usr,
                     "bot": botName,
+                    //"serviceUrl": 'https://apis.skype.com/'
                     "serviceUrl": 'https://apis.skype.com/'
 
             }
@@ -105,12 +106,18 @@ intents.matches('TransferChat',
 
             msg.address(connectorAddress).text('Hi!').toMessage;
 
-            
+            bot.beginDialog(connectorAddress, '*:/');
 
-            connector.send(msg[0], (err) => {
-                //console.log('ERROR >>> '+ err.message);
-                //console.error(err.stack);
-            });
+            bot.dialog('/', [
+                (session) => {
+                    session.send(msg[0]);
+                } 
+            ]);
+
+            // connector.send(msg[0], (err) => {
+            //     //console.log('ERROR >>> '+ err.message);
+            //     //console.error(err.stack);
+            // });
 
             // connector.startConversation(connectorAddress, (err, address) => {
 
