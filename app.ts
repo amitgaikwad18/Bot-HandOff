@@ -2,6 +2,8 @@ import * as express from 'express';
 import * as builder from 'botbuilder';
 import { Handoff } from './handoff';
 import { commandsMiddleware } from './commands';
+var cognitiveServices = require('botbuilder-cognitiveservices');
+var dialogFlowRecognizer = require('api-ai-recognizer');
 
 //=========================================================
 // Bot Setup
@@ -19,7 +21,14 @@ const connector = new builder.ChatConnector({
     appPassword: 'uKMBL14#)rlbareVDQ859;^'
 });
 
+var recognizer = new dialogFlowRecognizer('e7e5ee6358ce4b3094a0368d43281e70');
+
 var inMemoryStorage = new builder.MemoryBotStorage();
+
+var intents = new builder.IntentDialog({
+    recognizers: [recognizer]
+});
+
 
 // const bot = new builder.UniversalBot(connector, [
 //     function (session, args, next) {
@@ -46,17 +55,31 @@ bot.dialog('/welcome',
         session.send('Hi! You either talk to me or to agent');
 });
 
-bot.dialog('/', 
+bot.dialog('/', intents);
 
-    function(session){
-        console.log(session.message.text);
-        session.send('You decided to talk to ' + session.message.text);
+intents.matches('TransferChat',
+[
+    function(session, args){
 
-        if(session.message.text.match('Talk to Agent')){
-            
-        }   
+        console.log('Intent identified as TransferChat');
 
-});
+        builder.Prompts.choice(session, 'Do you want to talk to agent?','Yes|No');
+    },
+
+    function(session,results){
+
+        console.log(results.response);
+
+        if(results.response){
+            session.dialogData.userChoice = results.response;
+
+            if('Yes' === session.dialogData.userChoice){
+                session.send('Transferring chat to agent...');
+            }
+        }
+    }
+
+]);
 
 // const isAgent = (session: builder.Session) => true;
 
