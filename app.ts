@@ -4,6 +4,8 @@ import { Handoff } from './handoff';
 import { commandsMiddleware } from './commands';
 var cognitiveServices = require('botbuilder-cognitiveservices');
 var dialogFlowRecognizer = require('api-ai-recognizer');
+import {ChatConnector, IChatConnectorAddress, IMessage,
+    IIdentity, Message, UniversalBot, IAddress} from 'botbuilder'
 
 //=========================================================
 // Bot Setup
@@ -75,6 +77,50 @@ intents.matches('TransferChat',
 
             if('Yes' === session.dialogData.userChoice){
                 session.send('Transferring chat to agent...');
+
+                /** chat transfer to agent */
+                let messageChannel = session.message.source;
+                let messageID = session.message.replyToId;
+                
+
+                let usr: builder.IIdentity = {
+                    id: "session.message.user",
+                    name: "amit.gaikwad@gmail.com"
+                }
+
+                let bot: builder.IIdentity = {
+                    id: "session.message.bot",
+                    name: ""
+                }
+
+                let connectorAddress:  IChatConnectorAddress = {
+                    "channelId": "skype",
+                    "user": usr,
+                    "bot": bot,
+                    "serviceUrl": messageID
+
+            }
+
+            connector.startConversation(connectorAddress, (err, address) => {
+
+                    let msgs = (new Message().text('This is ping from the bot').address(address).toMessage);
+
+                    if(err){
+                        
+                    }
+                    
+                    connector.send(msgs[0], (err) => {
+
+                        if(err){
+
+                        }
+                    });
+
+                    
+            });
+
+
+
                 session.endDialog();
             }else{
                 session.send('Let\'s continue chatting');
