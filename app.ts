@@ -103,7 +103,7 @@ intents.matches('TransferChat',
 
             var msg = (new builder.Message());
 
-            msg.address(connectorAddress).text('Hi!');
+            msg.address(connectorAddress).text('Hi!').toMessage;
 
             connector.send(msg[0], (err) => {
                 console.log('ERROR >>> '+ err.message);
