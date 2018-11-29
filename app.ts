@@ -94,10 +94,10 @@ intents.matches('TransferChat',
                 }
 
                 let connectorAddress:  IChatConnectorAddress = {
-                    "channelId": "skype",
+                    "channelId": 'skype',
                     "user": usr,
                     "bot": bot,
-                    "serviceUrl": messageID
+                    "serviceUrl": 'https://apis.skype.com/'
 
             }
 
