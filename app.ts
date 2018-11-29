@@ -106,9 +106,9 @@ intents.matches('TransferChat',
 
             msg.address(connectorAddress).text('Hi!').toMessage;
 
-            bot.beginDialog(connectorAddress, '*:/');
+            bot.beginDialog(connectorAddress, '/sayHi');
 
-            bot.dialog('/', [
+            bot.dialog('/sayHi', [
                 (session) => {
                     session.send(msg[0]);
                 } 
