@@ -71,10 +71,12 @@ intents.matches('TransferChat',
         console.log(results.response);
 
         if(results.response){
-            session.dialogData.userChoice = results.response;
+            session.dialogData.userChoice = results.response.entity;
 
             if('Yes' === session.dialogData.userChoice){
                 session.send('Transferring chat to agent...');
+            }else{
+                session.send('Let\'s continue chatting');
             }
         }
     }
