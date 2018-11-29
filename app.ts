@@ -31,7 +31,6 @@ const bot = new builder.UniversalBot(connector).set('storage',inMemoryStorage);
 
 app.post('/api/messages', connector.listen());
 
-
 bot.on('conversationUpdate', function (message) {
     if (message.membersAdded) {
         message.membersAdded.forEach(function (identity) {
