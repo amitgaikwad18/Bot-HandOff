@@ -106,7 +106,8 @@ intents.matches('TransferChat',
             msg.address(connectorAddress).text('Hi!');
 
             connector.send(msg[0], (err) => {
-
+                console.log('ERROR >>> '+ err.message);
+                console.log(err.stack);
             });
 
             // connector.startConversation(connectorAddress, (err, address) => {
