@@ -106,18 +106,18 @@ intents.matches('TransferChat',
 
             msg.address(connectorAddress).text('Hi!').toMessage;
 
-            bot.beginDialog(connectorAddress, '/sayHi');
+            // bot.beginDialog(connectorAddress, '/sayHi');
 
-            bot.dialog('/sayHi', [
-                (session) => {
-                    session.send(msg[0]);
-                } 
-            ]);
+            // bot.dialog('/sayHi', [
+            //     (session) => {
+            //         session.send(msg[0]);
+            //     } 
+            // ]);
 
-            // connector.send(msg[0], (err) => {
-            //     //console.log('ERROR >>> '+ err.message);
-            //     //console.error(err.stack);
-            // });
+            connector.send(msg[0], (err) => {
+                //console.log('ERROR >>> '+ err.message);
+                //console.error(err.stack);
+            });
 
             // connector.startConversation(connectorAddress, (err, address) => {
 
