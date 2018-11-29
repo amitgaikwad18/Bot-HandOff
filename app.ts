@@ -101,27 +101,35 @@ intents.matches('TransferChat',
 
             }
 
-            connector.startConversation(connectorAddress, (err, address) => {
+            var msg = (new builder.Message());
 
-                    let msgs = (new Message().text('This is ping from the bot').address(address).toMessage);
+            msg.address(connectorAddress).text('Hi!');
 
-                    if(err){
-                        
-                    }
-                    
-                    connector.send(msgs[0], (err) => {
+            connector.send(msg[0], (err) => {
 
-                        if(err){
-
-                        }
-                    });
-
-                    
             });
 
+            // connector.startConversation(connectorAddress, (err, address) => {
+
+            //         let msgs = (new Message().text('This is ping from the bot').address(address).toMessage);
+
+            //         if(err){
+                        
+            //         }
+                    
+            //         connector.send(msgs[0], (err) => {
+
+            //             if(err){
+
+            //             }
+            //         });
+
+                    
+            // });
 
 
-                session.endDialog();
+
+                //session.endDialog();
             }else{
                 session.send('Let\'s continue chatting');
             }
