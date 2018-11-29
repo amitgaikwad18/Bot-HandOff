@@ -88,15 +88,15 @@ intents.matches('TransferChat',
                     name: "amitgaikwad85@gmail.com"
                 }
 
-                let bot: builder.IIdentity = {
+                let botName: builder.IIdentity = {
                     id: "session.message.bot",
-                    name: "bot-handoff-skype"
+                    name: bot.name
                 }
 
                 let connectorAddress:  IChatConnectorAddress = {
                     "channelId": 'skype',
                     "user": usr,
-                    "bot": bot,
+                    "bot": botName,
                     "serviceUrl": 'https://apis.skype.com/'
 
             }
@@ -104,6 +104,8 @@ intents.matches('TransferChat',
             var msg = (new Message());
 
             msg.address(connectorAddress).text('Hi!').toMessage;
+
+            
 
             connector.send(msg[0], (err) => {
                 //console.log('ERROR >>> '+ err.message);
