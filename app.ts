@@ -52,7 +52,7 @@ bot.on('conversationUpdate', function (message) {
 
 bot.dialog('/welcome',
     function(session){
-        session.send('Hi! You either talk to me or to agent');
+        session.send('Hi! I\'m your first level of support');
 });
 
 bot.dialog('/', intents);
@@ -75,6 +75,7 @@ intents.matches('TransferChat',
 
             if('Yes' === session.dialogData.userChoice){
                 session.send('Transferring chat to agent...');
+                session.endDialog();
             }else{
                 session.send('Let\'s continue chatting');
             }
@@ -82,6 +83,25 @@ intents.matches('TransferChat',
     }
 
 ]);
+
+intents.matches('Default Welcome Intent', function(session, args){
+
+    console.log('Intent found Default Welcome Intent');
+
+    var fulfillment = builder.EntityRecognizer.findEntity(args.entities, 'fulfillment');
+
+    if(fulfillment){
+        var speech = fulfillment.entity;
+        session.send(speech);
+    }else{
+        session.send('Sorry, I dont understand that.');
+    }
+});
+
+intents.onDefault(function (session){
+    session.send('Sorry ... can you please rephrase?');
+    //botbuilder.Prompts.choice(session, 'Please select from following',['convert to inr','convert to JPY']) 
+});
 
 // const isAgent = (session: builder.Session) => true;
 
