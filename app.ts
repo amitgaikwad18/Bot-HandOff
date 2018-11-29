@@ -98,7 +98,7 @@ intents.matches('TransferChat',
                     "user": usr,
                     "bot": botName,
                     //"serviceUrl": 'https://apis.skype.com/'
-                    "serviceUrl": 'https://apis.skype.com/'
+                    "serviceUrl": 'https://skype.botframework.com/'
 
             }
 
