@@ -82,7 +82,7 @@ intents.matches('TransferChat',
                 let messageChannel = session.message.source;
                 let messageID = session.message.replyToId;
 
-                console.log(bot.name);
+                console.log(session.message.address.bot.id + ' <> ' +session.message.address.bot.name);
                 
 
                 let usr: builder.IIdentity = {
