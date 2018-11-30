@@ -81,6 +81,8 @@ intents.matches('TransferChat',
                 /** chat transfer to agent */
                 let messageChannel = session.message.source;
                 let messageID = session.message.replyToId;
+
+                console.log(bot.name);
                 
 
                 let usr: builder.IIdentity = {
