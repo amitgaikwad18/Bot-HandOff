@@ -91,8 +91,8 @@ intents.matches('TransferChat',
                 }
 
                 let botName: builder.IIdentity = {
-                    id: "session.message.bot",
-                    name: bot.name
+                    id: session.message.address.bot.id,
+                    name: session.message.address.bot.name
                 }
 
                 let connectorAddress:  IChatConnectorAddress = {
